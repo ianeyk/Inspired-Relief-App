@@ -8,13 +8,15 @@ import { HelperCard } from './helper_card';
 export default function App() {
   const [result, setResult] = useState([]);
   const results = get_data([51.5074, 0.1278]);
+  console.log(results);
   results.then(function(value) {
     setResult(value);
   });
   if (result.length == 0) {
     return (
       <View style={styles.container}>
-        <Text>Loading...</Text>
+        <Text>Loading...
+        </Text>
         <StatusBar style="auto" />
       </View>
     );
@@ -24,7 +26,7 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.msg}>We found {result.length} Helpers!</Text>
       <StatusBar style="auto" />
-      <FlatList data={result} 
+      <FlatList data={result}
       renderItem={({item}) =>
           <View style={styles.cards}>
           <HelperCard {...item}/>
@@ -40,12 +42,12 @@ export default function App() {
   );
 }
 
-window['get_data'] =get_data; 
+window['get_data'] =get_data;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    
+
     height:'100%',
     width:'100%',
 

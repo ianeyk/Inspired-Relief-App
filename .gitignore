@@ -34,5 +34,8 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-#Firebase auth
+# Firebase auth
 firebase_config.json
+
+# Settings
+.vscode

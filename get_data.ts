@@ -1,11 +1,11 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 
-const geofire = require('geofire-common'); 
+const geofire = require('geofire-common');
 
 import firebase_config from './firebase_config.json'
 
-let app = firebase.initializeApp(firebase_config.firebase_config);
+let app = firebase.initializeApp(firebase_config);
 let db = firebase.firestore(app);
 
 import { get_location } from './get_location';
@@ -27,7 +27,7 @@ export async function get_data(center: number[]){
     // const loc = null
     // if (loc?.coords?.latitude == null) { loc.coords.latitude = 0; loc.coords.longitude = 0; }
 
-    
+
 
     const bounds = geofire.geohashQueryBounds(center, radiusInM);
     const promises: Promise<firebase.firestore.QuerySnapshot>[] = [];
@@ -35,6 +35,7 @@ export async function get_data(center: number[]){
         const q = db.collection('helpers').orderBy('loc').limit(20);
         // console.log((await q.get()).docs.forEach(doc => console.log(doc.data())))
         promises.push(q.get());
+        // console.log(promises)
     }
 
     let data: firebase.firestore.DocumentSnapshot<firebase.firestore.DocumentData>[] = [];
